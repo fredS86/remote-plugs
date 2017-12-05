@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "serveur REST simple pour la gestion de prises virtuelles via les GPIO",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "repository": "",
+  "author": "Frederic Solignac",
+  "license": "BSD",
+  "dependencies": {
+    "moment": "~2.19.0",
+    "serve-static": "^1.13.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "winston": "~2.4.0"
+  },
+  "optionalDependencies": {
+    "wiring-pi": "~2.0.0"
+  }
+}

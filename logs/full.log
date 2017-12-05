@@ -1,0 +1,309 @@
+2017-11-30 Thu 01:08:04:477 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:08:27:363 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:14:59:363 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:14:59:497 - [31merror[39m: uncaughtException: OUTPUT is not defined date=Thu Nov 30 2017 01:14:59 GMT+0100 (CET), pid=9958, uid=1000, gid=1000, cwd=/home/netbook/Worspaces/RemotePlugs, execPath=/usr/bin/node, version=v8.9.1, argv=[/usr/bin/node, /home/netbook/Worspaces/RemotePlugs/src/server.js], rss=35065856, heapTotal=11169792, heapUsed=6970536, external=172792, loadavg=[1.68994140625, 1.51611328125, 1.0068359375], uptime=13799
+ReferenceError: OUTPUT is not defined
+    at Object.digitalWrite (/home/netbook/Worspaces/RemotePlugs/src/utils/wiring-pi-mock.js:11:37)
+    at /home/netbook/Worspaces/RemotePlugs/src/services/gpio.js:20:7
+    at Array.forEach (<anonymous>)
+    at Object.<anonymous> (/home/netbook/Worspaces/RemotePlugs/src/services/gpio.js:18:7)
+    at Module._compile (module.js:635:30)
+    at Object.Module._extensions..js (module.js:646:10)
+    at Module.load (module.js:554:32)
+    at tryModuleLoad (module.js:497:12)
+    at Function.Module._load (module.js:489:3)
+    at Module.require (module.js:579:17)
+2017-11-30 Thu 01:15:43:381 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:15:43:454 - [31merror[39m: uncaughtException: Most middleware (like bodyParser) is no longer bundled with Express and must be installed separately. Please see https://github.com/senchalabs/connect#middleware. date=Thu Nov 30 2017 01:15:43 GMT+0100 (CET), pid=9988, uid=1000, gid=1000, cwd=/home/netbook/Worspaces/RemotePlugs, execPath=/usr/bin/node, version=v8.9.1, argv=[/usr/bin/node, /home/netbook/Worspaces/RemotePlugs/src/server.js], rss=35438592, heapTotal=11169792, heapUsed=6971152, external=172792, loadavg=[1.3564453125, 1.431640625, 1.00146484375], uptime=13843
+Error: Most middleware (like bodyParser) is no longer bundled with Express and must be installed separately. Please see https://github.com/senchalabs/connect#middleware.
+    at Function.get (/home/netbook/Worspaces/RemotePlugs/node_modules/express/lib/express.js:108:13)
+    at Object.<anonymous> (/home/netbook/Worspaces/RemotePlugs/src/routers/plugs.js:8:20)
+    at Module._compile (module.js:635:30)
+    at Object.Module._extensions..js (module.js:646:10)
+    at Module.load (module.js:554:32)
+    at tryModuleLoad (module.js:497:12)
+    at Function.Module._load (module.js:489:3)
+    at Module.require (module.js:579:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/netbook/Worspaces/RemotePlugs/src/server.js:4:13)
+2017-11-30 Thu 01:22:00:795 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:22:00:876 - [31merror[39m: uncaughtException: Route.post() requires a callback function but got a [object String] date=Thu Nov 30 2017 01:22:00 GMT+0100 (CET), pid=10142, uid=1000, gid=1000, cwd=/home/netbook/Worspaces/RemotePlugs, execPath=/usr/bin/node, version=v8.9.1, argv=[/usr/bin/node, /home/netbook/Worspaces/RemotePlugs/src/server.js], rss=35479552, heapTotal=11169792, heapUsed=7025144, external=172792, loadavg=[1.29736328125, 1.2763671875, 1.06982421875], uptime=14220
+Error: Route.post() requires a callback function but got a [object String]
+    at Route.(anonymous function) [as post] (/home/netbook/Worspaces/RemotePlugs/node_modules/express/lib/router/route.js:202:15)
+    at Object.<anonymous> (/home/netbook/Worspaces/RemotePlugs/src/routers/plugs.js:23:4)
+    at Module._compile (module.js:635:30)
+    at Object.Module._extensions..js (module.js:646:10)
+    at Module.load (module.js:554:32)
+    at tryModuleLoad (module.js:497:12)
+    at Function.Module._load (module.js:489:3)
+    at Module.require (module.js:579:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/netbook/Worspaces/RemotePlugs/src/server.js:4:13)
+2017-11-30 Thu 01:24:29:102 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:24:29:261 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:26:54:940 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:26:59:988 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:31:47:554 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:32:25:122 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:32:47:826 - [32minfo[39m: GET / return list of 2 arroseurs
+2017-11-30 Thu 01:33:11:987 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=52479
+2017-11-30 Thu 01:34:46:742 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:34:54:259 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:43:25:074 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:43:25:216 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:45:45:457 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:45:45:654 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:45:55:589 - [90mactivite[39m: Start plug
+2017-11-30 Thu 01:45:55:600 - [90mactivite[39m: Delay : 1500000
+2017-11-30 Thu 01:45:55:602 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=1, timeLeft=-1512001242598
+2017-11-30 Thu 01:46:03:694 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=8093, timeLeft=-1512001250690
+2017-11-30 Thu 01:46:37:721 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 01:46:37:973 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 01:46:38:886 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 01:46:38:890 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=0, elapsedTime=1071
+2017-11-30 Thu 01:46:46:226 - [90mactivite[39m: Start plug
+2017-11-30 Thu 01:46:46:234 - [90mactivite[39m: Delay : 1500000
+2017-11-30 Thu 01:46:46:237 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=-1512001294184
+2017-11-30 Thu 01:46:54:575 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=8337, timeLeft=-1512001302521
+2017-11-30 Thu 01:47:05:792 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 01:47:05:798 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=0, elapsedTime=0
+2017-11-30 Thu 01:47:13:599 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=7798
+2017-11-30 Thu 01:49:01:883 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=116083
+2017-11-30 Thu 01:49:11:043 - [90mactivite[39m: Start plug
+2017-11-30 Thu 01:49:11:047 - [90mactivite[39m: Delay : 1500000
+2017-11-30 Thu 01:49:11:049 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=-1512001294184
+2017-11-30 Thu 01:49:27:237 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=16187, timeLeft=-1512001310371
+2017-11-30 Thu 01:51:46:940 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=155887, timeLeft=-1512001450071
+2017-11-30 Thu 01:55:55:760 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=170077, timeLeft=-1512001698893
+2017-11-30 Thu 01:58:52:355 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=423988, timeLeft=-1512001875489
+2017-11-30 Thu 01:58:52:424 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 01:58:52:429 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=0, elapsedTime=0
+2017-11-30 Thu 01:59:03:918 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 01:59:03:920 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=0, elapsedTime=11494
+2017-11-30 Thu 02:00:17:751 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=85323
+2017-11-30 Thu 02:06:27:231 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 02:06:27:385 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 02:06:56:205 - [32minfo[39m: GET / return list of 2 arroseurs
+2017-11-30 Thu 02:07:09:479 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:07:09:507 - [90mactivite[39m: Delay : 15000
+2017-11-30 Thu 02:07:13:631 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=-1512003973438
+2017-11-30 Thu 02:07:27:386 - [32minfo[39m: GET / return list of 2 arroseurs
+2017-11-30 Thu 02:07:27:416 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 02:07:44:016 - [32minfo[39m: GET / return list of 2 arroseurs
+2017-11-30 Thu 02:08:20:686 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:08:20:694 - [90mactivite[39m: Delay : 15000
+2017-11-30 Thu 02:08:23:807 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=-1512003972422
+2017-11-30 Thu 02:09:36:365 - [32minfo[39m: GET / return list of 2 arroseurs
+2017-11-30 Thu 02:09:36:413 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 02:09:59:669 - [32minfo[39m: GET / return list of 2 arroseurs
+2017-11-30 Thu 02:10:07:245 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:21:36:377 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 02:21:36:656 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 02:21:52:621 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:21:52:630 - [90mactivite[39m: Delay : 15000
+2017-11-30 Thu 02:21:58:294 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=9341
+2017-11-30 Thu 02:22:07:138 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=14504, timeLeft=496
+2017-11-30 Thu 02:22:07:630 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 02:22:12:899 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=5263
+2017-11-30 Thu 02:22:21:797 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=14163
+2017-11-30 Thu 02:22:24:229 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=16595
+2017-11-30 Thu 02:22:30:518 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:22:30:529 - [90mactivite[39m: Delay : 15000
+2017-11-30 Thu 02:22:30:537 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=15000
+2017-11-30 Thu 02:22:38:141 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:22:38:153 - [90mactivite[39m: Delay : 15000
+2017-11-30 Thu 02:22:38:156 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=7624, timeLeft=15000
+2017-11-30 Thu 02:22:43:734 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=13197, timeLeft=9427
+2017-11-30 Thu 02:22:47:781 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=17250, timeLeft=5374
+2017-11-30 Thu 02:22:50:127 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=19595, timeLeft=3029
+2017-11-30 Thu 02:22:52:652 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=22121, timeLeft=503
+2017-11-30 Thu 02:22:53:147 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 02:22:55:139 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=1990
+2017-11-30 Thu 02:23:08:166 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:23:08:175 - [90mactivite[39m: Delay : 15000
+2017-11-30 Thu 02:23:08:179 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=15000
+2017-11-30 Thu 02:23:15:787 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=7609, timeLeft=7391
+2017-11-30 Thu 02:23:23:173 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 02:23:24:802 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=1623
+2017-11-30 Thu 02:25:12:486 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 02:25:12:652 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 02:25:18:922 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=6387
+2017-11-30 Thu 02:25:24:387 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:25:24:409 - [90mactivite[39m: Delay : 15000
+2017-11-30 Thu 02:25:24:419 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=15000
+2017-11-30 Thu 02:25:30:410 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=5999, timeLeft=9001
+2017-11-30 Thu 02:25:39:412 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 02:32:05:621 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-11-30 Thu 02:32:05:815 - [32minfo[39m: Express server listening on port 8080
+2017-11-30 Thu 02:32:48:379 - [90mactivite[39m: Start plug
+2017-11-30 Thu 02:32:48:387 - [90mactivite[39m: Delay : 15000
+2017-11-30 Thu 02:32:48:390 - [32minfo[39m: GET /Principal/stop returning id=Principal, status=1, elapsedTime=0, timeLeft=14999
+2017-11-30 Thu 02:32:53:935 - [32minfo[39m: GET /Principal returning id=Principal, status=1, elapsedTime=5544, timeLeft=9455
+2017-11-30 Thu 02:33:02:842 - [32minfo[39m: GET /Secondaire returning id=Secondaire, status=0, elapsedTime=57153
+2017-11-30 Thu 02:33:03:391 - [90mactivite[39m: Stop plug
+2017-11-30 Thu 02:33:09:853 - [32minfo[39m: GET /Principal returning id=Principal, status=0, elapsedTime=6452
+2017-12-02 Sat 08:53:26:671 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 08:53:26:863 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 08:54:51:404 - [32minfo[39m: GET /Principal returning id=Principal, pin=0, changeTime=1512201206713, status=0
+2017-12-02 Sat 08:55:45:395 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 08:55:45:535 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 08:55:58:253 - [32minfo[39m: GET /Principal returning id=Principal, pin=0, changeTime=1512201345416, status=0
+2017-12-02 Sat 08:56:12:604 - [90mactivite[39m: Start plug
+2017-12-02 Sat 08:56:12:616 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 08:56:27:618 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 08:57:30:750 - [90mactivite[39m: Start plug
+2017-12-02 Sat 08:57:30:767 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 08:57:45:770 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 08:59:31:701 - [90mactivite[39m: Start plug
+2017-12-02 Sat 08:59:31:705 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 08:59:46:711 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:00:36:140 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:00:36:334 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:01:04:731 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:01:04:753 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:01:19:750 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:01:49:039 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:01:49:047 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:02:05:741 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:02:05:865 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:02:07:873 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:02:07:881 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:02:07:884 - [32minfo[39m: GET /Principal/on returning  function status(code) {
+  this.statusCode = code;
+  return this;
+} undefined
+2017-12-02 Sat 09:02:20:424 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:02:20:433 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:02:20:439 - [32minfo[39m: GET /Principal/on returning  function status(code) {
+  this.statusCode = code;
+  return this;
+} undefined
+2017-12-02 Sat 09:02:35:443 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:02:51:046 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:04:04:834 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:04:05:029 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:04:40:266 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:04:40:276 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:04:47:734 - [32minfo[39m: GET /Principal/on returning  function status(code) {
+  this.statusCode = code;
+  return this;
+} undefined
+2017-12-02 Sat 09:04:55:274 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:04:58:860 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:04:58:864 - [32minfo[39m: GET /Principal/of returning id=Principal, pin=0, changeTime=1512201895277, status=0, 0=null, _called=true, _idleTimeout=-1, _idlePrev=null, _idleNext=null, _idleStart=39240, _onTimeout=null, _timerArgs=[$ref=$], _repeat=null, _destroyed=false, stopTime=1512201895278
+2017-12-02 Sat 09:05:11:889 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:07:26:527 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:07:26:741 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:07:29:091 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:07:29:099 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:07:35:580 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:07:40:973 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:07:41:008 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:07:41:015 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:07:46:060 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:07:46:080 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:07:46:088 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:07:51:124 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:07:51:127 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:07:51:136 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:07:56:160 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:07:56:163 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:07:56:165 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:08:01:188 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:08:01:197 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:08:01:205 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:08:06:222 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:08:06:229 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:08:06:231 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:08:11:263 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:08:11:266 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:08:11:284 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:08:16:323 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:08:16:326 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:08:16:335 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:08:21:368 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:08:21:376 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:08:21:380 - [32minfo[39m: GET /Principal/on returning  [object Object] undefined
+2017-12-02 Sat 09:08:36:384 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:11:19:850 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:11:19:989 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:12:37:221 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:12:37:231 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:12:37:233 - [32minfo[39m: GET /Principal/on returning 200 - undefined - undefined
+2017-12-02 Sat 09:12:52:237 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:13:39:545 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:13:39:699 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:14:14:246 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:14:14:266 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:14:14:296 - [32minfo[39m: GET /Principal/on returning 200 - OK - undefined
+2017-12-02 Sat 09:14:29:271 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:14:43:395 - [32minfo[39m: GET /Principal0/on returning 404 - Not Found - undefined
+2017-12-02 Sat 09:28:09:113 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:28:09:292 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:28:24:854 - [32minfo[39m: GET /Principal0/on returning 404 - Not Found
+2017-12-02 Sat 09:28:27:932 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:28:27:946 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:28:27:958 - [32minfo[39m: GET /Principal/on returning [object Object]
+2017-12-02 Sat 09:28:40:691 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:28:40:696 - [90mactivite[39m: Delay : 15
+2017-12-02 Sat 09:28:40:700 - [32minfo[39m: GET /Principal/on returning [object Object]
+2017-12-02 Sat 09:28:40:712 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:29:25:229 - [32minfo[39m: GET /Principal returning id=Principal, pin=0, changeTime=1512203320714, status=0, 0=null, _called=true, _idleTimeout=-1, _idlePrev=null, _idleNext=null, _idleStart=36133, _onTimeout=null, _timerArgs=[$ref=$], _repeat=null, _destroyed=false, stopTime=151220332069715
+2017-12-02 Sat 09:29:43:716 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:29:43:725 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:29:43:734 - [32minfo[39m: GET /Principal/on returning [object Object]
+2017-12-02 Sat 09:29:58:731 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 09:34:12:268 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:34:12:414 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:35:33:579 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 09:35:33:728 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 09:35:37:408 - [90mactivite[39m: Start plug
+2017-12-02 Sat 09:35:37:418 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 09:35:37:449 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":1,"timeLeft":14999}
+2017-12-02 Sat 09:35:48:800 - [32minfo[39m: GET /Principal0/on returning 404 - Not Found
+2017-12-02 Sat 09:35:52:418 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:34:39:413 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 10:34:39:545 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 10:35:13:625 - [32minfo[39m: GET /Principal0/on returning 404 - Not Found
+2017-12-02 Sat 10:35:17:671 - [32minfo[39m: GET /Principal0/off returning 404 - Not Found
+2017-12-02 Sat 10:35:23:504 - [32minfo[39m: GET /Principal0/ returning 404 - Not Found
+2017-12-02 Sat 10:35:26:938 - [32minfo[39m: GET /Principal/ returning {"id":"Principal","status":0,"elapsedTime":47483}
+2017-12-02 Sat 10:35:31:827 - [90mactivite[39m: Start plug
+2017-12-02 Sat 10:35:31:833 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 10:35:31:839 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":0,"timeLeft":15000}
+2017-12-02 Sat 10:35:37:525 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:35:37:539 - [32minfo[39m: GET /Principal/off returning {"id":"Principal","status":0,"elapsedTime":1}
+2017-12-02 Sat 10:35:43:633 - [90mactivite[39m: Start plug
+2017-12-02 Sat 10:35:43:639 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 10:35:43:643 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":0,"timeLeft":15000}
+2017-12-02 Sat 10:35:58:642 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:36:05:451 - [90mactivite[39m: Start plug
+2017-12-02 Sat 10:36:05:454 - [90mactivite[39m: Delay : 10000
+2017-12-02 Sat 10:36:05:464 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":0,"timeLeft":151219224338144580}
+2017-12-02 Sat 10:36:13:972 - [32minfo[39m: GET /Principal/ returning {"id":"Principal","status":1,"elapsedTime":8515,"timeLeft":151219224338136030}
+2017-12-02 Sat 10:36:15:456 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:36:19:043 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:36:19:050 - [32minfo[39m: GET /Principal/off returning {"id":"Principal","status":0,"elapsedTime":3587}
+2017-12-02 Sat 10:37:49:284 - [90mactivite[39m: Start plug
+2017-12-02 Sat 10:38:28:075 - [90mactivite[39m: Delay : 10000
+2017-12-02 Sat 10:38:28:105 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":0,"timeLeft":151219238600001950}
+2017-12-02 Sat 10:38:38:078 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:38:58:798 - [90mactivite[39m: Start plug
+2017-12-02 Sat 10:39:09:832 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 10:39:09:865 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":0,"timeLeft":15000}
+2017-12-02 Sat 10:39:24:839 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:39:57:020 - [32minfo[39m: Wiring-Pi not available, using mock
+2017-12-02 Sat 10:39:57:188 - [32minfo[39m: Express server listening on port 8080
+2017-12-02 Sat 10:40:01:583 - [90mactivite[39m: Start plug
+2017-12-02 Sat 10:40:08:066 - [90mactivite[39m: Delay : 70000
+2017-12-02 Sat 10:40:08:178 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":0,"timeLeft":69999}
+2017-12-02 Sat 10:40:27:771 - [90mactivite[39m: Start plug
+2017-12-02 Sat 10:40:32:173 - [90mactivite[39m: Delay : 15000
+2017-12-02 Sat 10:40:32:205 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":24104,"timeLeft":15000}
+2017-12-02 Sat 10:40:47:183 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:40:50:946 - [90mactivite[39m: Start plug
+2017-12-02 Sat 10:40:50:954 - [90mactivite[39m: Delay : 80
+2017-12-02 Sat 10:40:50:964 - [32minfo[39m: GET /Principal/on returning {"id":"Principal","status":1,"elapsedTime":0,"timeLeft":80}
+2017-12-02 Sat 10:40:51:029 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:40:55:839 - [90mactivite[39m: Stop plug
+2017-12-02 Sat 10:40:55:849 - [32minfo[39m: GET /Principal/off returning {"id":"Principal","status":0,"elapsedTime":4806}

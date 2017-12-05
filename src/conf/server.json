@@ -1,0 +1,8 @@
+{
+	"port": 8080,
+	"delay": 15000,
+	"arroseurs": [
+			{ "id": "Principal", "pin": 0},
+			{ "id": "Secondaire", "pin": 1}
+			]
+}
