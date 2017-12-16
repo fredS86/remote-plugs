@@ -2,6 +2,7 @@ var logger = require('./utils/logger');
 var express = require('express');
 var serveStatic = require('serve-static');
 var plugs = require('./routers/plugs-server');
+var conf = require('./routers/conf-server');
 var app = express();
 
 
@@ -12,6 +13,8 @@ app.use(serveStatic(__dirname + '/public'));
 logger.debug(__dirname + '/public')
 
 app.use('/plugs', plugs);
+
+app.use('/conf', conf);
 
 logger.debug('LogDir : ' + logger.logDir);
 app.listen(port, function () {

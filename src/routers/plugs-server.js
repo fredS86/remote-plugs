@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
   all.array.forEach(plug => {
     result.push(makeResult(plug))
   });
-  logger.info('GET / return list of', results.length, 'arroseurs');
+  logger.info('GET / return list of ', results.length, ' plugs');
   res.send(results);
 });
 
@@ -24,7 +24,7 @@ router.route('/:id')
     managePlug(req, res);
   })
   .post(function (req, res) {
-    managePlug(req, res, (parseInt(status.status) === 1 ? plugs.on : plugs.off));
+    managePlug(req, res, (parseInt(req.body.status) === 1 ? plugs.on : plugs.off));
   });
 
 router.get('/:id/on', function (req, res) {
