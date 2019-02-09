@@ -18,6 +18,6 @@
     "winston": "~2.4.0"
   },
   "optionalDependencies": {
-    "wiring-pi": "~2.0.0"
+    "wiring-pi": "~2.2.1"
   }
 }
