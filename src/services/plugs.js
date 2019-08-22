@@ -7,12 +7,11 @@ const OFF = wpi.LOW;
 
 
 exports.all = function() {
-  var results = [];
-  conf.plugs().forEach(function(plug){
-    // MAJ de l'etat de chaque plug
-    majPlug(plug);
-  });
-  return plugs;
+//  return conf.plugs().map(function(plug){
+//    // MAJ de l'etat de chaque plug
+//    return majPlug(plug);
+//  });
+  return conf.plugs();
 }
 
 exports.read = function(id) {
@@ -36,12 +35,12 @@ exports.off = function(plug){
 var switchPlug = function(action, plug, timeleft) {
     action(plug, timeleft);
     // MAJ de l'etat du plug
-    majPlug(plug);
-    return plug;
+    return majPlug(plug);
 }
 
 var majPlug = function (plug) {
-    plug.status = wpi.digitalRead(plug.pin);
+    //plug.status = wpi.digitalRead(plug.pin);
+    return plug;
 }
 
 var startPlug = function (plug, delayParam) {
@@ -59,7 +58,9 @@ var startPlug = function (plug, delayParam) {
   } else {
     plug.stopTime = -1;
   }
-  wpi.digitalWrite(plug.pin, ON);
+  //wpi.digitalWrite(plug.pin, ON);
+  wpi.pinMode(plug.pin, wpi.OUTPUT); 
+  plug.status = ON;
   if (oldStatus != ON) {
     plug.changeTime = Date.now();
   }
@@ -68,7 +69,9 @@ var startPlug = function (plug, delayParam) {
 var stopPlug = function (plug) {
   logger.activite("Stop plug");
   var oldStatus = plug.status;
-  wpi.digitalWrite(plug.pin, OFF);
+  //wpi.digitalWrite(plug.pin, OFF);
+  wpi.pinMode(plug.pin, wpi.INPUT);
+  plug.status=OFF;
   if (  typeof plug.timer !== 'undefined' ) {
     clearTimeout(plug.timer);
   }

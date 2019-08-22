@@ -12,11 +12,11 @@ router.get('/', function (req, res) {
   var all = plugs.all();
   // construction du resultat
   var result = [];
-  all.array.forEach(plug => {
+  all.forEach(plug => {
     result.push(makeResult(plug))
   });
-  logger.info('GET / return list of ', results.length, ' plugs');
-  res.send(results);
+  logger.info('GET / return list of ', result.length, ' plugs');
+  res.send(result);
 });
 
 router.route('/:id')

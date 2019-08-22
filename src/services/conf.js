@@ -6,10 +6,12 @@ var fs = require('fs');
 var conf = require(CONF_FILE);
 var confFile = __dirname + '/' + CONF_FILE;
 
-const OFF = wpi.LOW;
 var initPlug = exports.init = function(plug){
-  wpi.pinMode(plug.pin, wpi.OUTPUT);
-  wpi.digitalWrite(plug.pin, OFF);
+  //wpi.pinMode(plug.pin, wpi.OUTPUT);
+  //wpi.digitalWrite(plug.pin, wpi.LOW);
+  wpi.pinMode(plug.pin, wpi.INPUT);
+  wpi.digitalWrite(plug.pin, wpi.LOW);
+  plug.status = wpi.LOW;
   plug.changeTime = Date.now();
 };
 

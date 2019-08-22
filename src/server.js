@@ -7,7 +7,7 @@ var app = express();
 
 
 // use command-line arg for port if passed
-var port = process.argv[2] || '8080';
+var port = process.argv[2] || '8090';
 
 app.use(serveStatic(__dirname + '/public'));
 logger.debug(__dirname + '/public')

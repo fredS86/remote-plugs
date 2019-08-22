@@ -1,8 +1,9 @@
 {
-	"port": 8080,
+	"port": 8090,
 	"delay": 15000,
-	"arroseurs": [
-			{ "id": "Principal", "pin": 0},
-			{ "id": "Secondaire", "pin": 1}
+	"plugs": [
+			{ "id": "Piscine", "pin": 23, "delay": 30000},
+			{ "id": "Jardin1", "pin": 24, "delay": 1800000},
+			{ "id": "Jardin2", "pin": 25, "delay": 1800000}
 			]
 }
