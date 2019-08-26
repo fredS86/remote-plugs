@@ -11,16 +11,13 @@ exports.all = function() {
 //    // MAJ de l'etat de chaque plug
 //    return majPlug(plug);
 //  });
-  return conf.plugs();
+  return conf.plugs().map(majPlug);
 }
 
 exports.read = function(id) {
     var plug = conf.getPlug(id)
     // MAJ de l'etat du plug
-    if (plug) {
-      majPlug(plug);
-    }
-    return plug;
+    return plug ? majPlug(plug) : plug;
 }
 
 exports.on = function(plug, timeleft){
