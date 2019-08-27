@@ -3,9 +3,7 @@
 var winston = require('winston');
 var moment = require('moment');
 var fs = require('fs');
-
-var logDir = '/var/log/RemotePlugs';
-//logDir = './logs';
+var logDir = process.platform === "win32" ? './logs' : '/var/log/RemotePlugs';
 
 //
 // Logging levels
