@@ -1,23 +1,19 @@
 var logger = require('../utils/logger');
-var wpi = require('../utils/wiring-pi');
+var wpi = require('wpi-gpio');
 var conf = require('./conf');
 
-const ON = wpi.HIGH;
-const OFF = wpi.LOW;
+const ON = 1;
+const OFF = 0;
 
 
 exports.all = function() {
-//  return conf.plugs().map(function(plug){
-//    // MAJ de l'etat de chaque plug
-//    return majPlug(plug);
-//  });
-  return conf.plugs().map(majPlug);
+  return Promise.all(conf.plugs().map(majPlug));
 }
 
 exports.read = function(id) {
     var plug = conf.getPlug(id)
     // MAJ de l'etat du plug
-    return plug ? majPlug(plug) : plug;
+    return plug ? majPlug(plug) : Promise.resolve(plug);
 }
 
 exports.on = function(plug, timeleft){
@@ -30,17 +26,16 @@ exports.off = function(plug){
 }
 
 var switchPlug = function(action, plug, timeleft) {
-    action(plug, timeleft);
-    // MAJ de l'etat du plug
-    return majPlug(plug);
+    // on realise l'action et on MAJ l'etat du plug
+    return action(plug, timeleft).then(majPlug);
 }
 
-var majPlug = function (plug) {
-    //plug.status = wpi.digitalRead(plug.pin);
+var majPlug = async function (plug) {
+    //plug.status = await wpi.read(plug.pin);
     return plug;
 }
 
-var startPlug = function (plug, delayParam) {
+var startPlug = async function (plug, delayParam) {
   logger.activite("Start plug");
   var oldStatus = plug.status;
 
@@ -55,19 +50,21 @@ var startPlug = function (plug, delayParam) {
   } else {
     plug.stopTime = -1;
   }
-  //wpi.digitalWrite(plug.pin, ON);
-  wpi.pinMode(plug.pin, wpi.OUTPUT); 
+  //await wpi.write(plug.pin, ON);
+  await wpi.output(plug.pin); 
   plug.status = ON;
   if (oldStatus != ON) {
     plug.changeTime = Date.now();
   }
+
+  return plug;
 }
 
-var stopPlug = function (plug) {
+var stopPlug = async function (plug) {
   logger.activite("Stop plug");
   var oldStatus = plug.status;
-  //wpi.digitalWrite(plug.pin, OFF);
-  wpi.pinMode(plug.pin, wpi.INPUT);
+  //await wpi.write(plug.pin, OFF);
+  await wpi.input(plug.pin);
   plug.status=OFF;
   if (  typeof plug.timer !== 'undefined' ) {
     clearTimeout(plug.timer);
@@ -75,4 +72,6 @@ var stopPlug = function (plug) {
   if (oldStatus != OFF) {
     plug.changeTime = Date.now();
   }
+
+  return plug;
 }

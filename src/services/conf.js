@@ -1,27 +1,22 @@
 var CONF_FILE = '../conf/server.json';
 
 var logger = require('../utils/logger');
-var wpi = require('../utils/wiring-pi');
+var wpi = require('wpi-gpio');
 var fs = require('fs');
 var conf = require(CONF_FILE);
 var confFile = __dirname + '/' + CONF_FILE;
 
-var initPlug = exports.init = function(plug){
-  //wpi.pinMode(plug.pin, wpi.OUTPUT);
-  //wpi.digitalWrite(plug.pin, wpi.LOW);
-  wpi.pinMode(plug.pin, wpi.INPUT);
-  wpi.digitalWrite(plug.pin, wpi.LOW);
-  plug.status = wpi.LOW;
+var initPlug = exports.init = async function(plug){
+  //await wpi.output(plug.pin, 0);
+  await wpi.input(plug.pin);
+  await wpi.write(plug.pin, 0);
+  plug.status = 0;
   plug.changeTime = Date.now();
 };
 
 
 var plugs = conf.plugs;
 logger.debug(plugs);
-
-// initialise GPIO
-wpi.setup('wpi');
-//wiringPiSetup();
 
 // Initialise toutes les prises.
 plugs.forEach(initPlug);

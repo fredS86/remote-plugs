@@ -11,13 +11,11 @@
   "author": "Frederic Solignac",
   "license": "BSD",
   "dependencies": {
-    "moment": "~2.19.0",
-    "serve-static": "^1.13.1",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "winston": "~2.4.0"
-  },
-  "optionalDependencies": {
-    "wiring-pi": "~2.2.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "serve-static": "^1.14.1",
+    "winston": "^2.4.4",
+    "wpi-gpio": "git://github.com/fredS86/wpi-gpio.git#simulator"
   }
 }

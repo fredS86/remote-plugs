@@ -9,14 +9,12 @@ module.exports = router;
 router.use(bodyParser.json());
 
 router.get('/', function (req, res) {
-  var all = plugs.all();
-  // construction du resultat
-  var result = [];
-  all.forEach(plug => {
-    result.push(makeResult(plug))
+  plugs.all().then((all) => {
+    // construction du resultat
+    var result = all.map(makeResult);
+    logger.info('GET / return list of ', result.length, ' plugs');
+    res.send(result);
   });
-  logger.info('GET / return list of ', result.length, ' plugs');
-  res.send(result);
 });
 
 router.route('/:id')
@@ -35,11 +33,11 @@ router.get('/:id/off', function (req, res) {
   managePlug(req, res, plugs.off);
 });
 
-var managePlug = function(req, res, action) {
-  var plug = plugs.read(req.params.id);
+var managePlug = async function(req, res, action) {
+  var plug = await plugs.read(req.params.id);
   if (plug) {
-    var transform = action || function(plug) {return plug};
-    var result = makeResult(transform(plug, parseInt(req.query.timeLeft || req.body.timeLeft)));
+    var transform = action || function(plug) {return Promise.resolve(plug)};
+    var result = makeResult(await transform(plug, parseInt(req.query.timeLeft || req.body.timeLeft)));
     res.send(result);
   } else {
     res.sendStatus(404);
