@@ -83,6 +83,8 @@ var makeResult = function(plug) {
   var result = {};
   result.id = plug.id;
   result.status = plug.status;
+  result.type = plug.type;
+  result.label = plug.label;
   result.elapsedTime = Date.now() - plug.changeTime;
   if ( plug.status && plug.stopTime !== -1) {
     result.timeLeft = plug.stopTime - Date.now();

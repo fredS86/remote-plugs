@@ -47,7 +47,7 @@ var startPlug = async function (plug, delayParam) {
   if (  typeof plug.timer !== 'undefined' ) {
     clearTimeout(plug.timer);
   }
-  var delay = delayParam || plug.delay || conf.getDefaultDelay();
+  var delay = delayParam || plug.delay || (plug.type === 'timer' && conf.getDefaultDelay());
   if ( delay > 0 ) {
     plug.timer = setTimeout(stopPlug, delay, plug, true);
     logger.activite("Delay :", delay);
