@@ -25,6 +25,11 @@ exports.off = function(plug){
   return switchPlug(stopPlug, plug);
 }
 
+var timeoutCallback;
+exports.timeoutCallback = function(callback) {
+  timeoutCallback = callback;
+}
+
 var switchPlug = function(action, plug, timeleft) {
     // on realise l'action et on MAJ l'etat du plug
     return action(plug, timeleft).then(majPlug);
@@ -44,7 +49,7 @@ var startPlug = async function (plug, delayParam) {
   }
   var delay = delayParam || plug.delay || conf.getDefaultDelay();
   if ( delay > 0 ) {
-    plug.timer = setTimeout(stopPlug, delay, plug);
+    plug.timer = setTimeout(stopPlug, delay, plug, true);
     logger.activite("Delay :", delay);
     plug.stopTime = Date.now() + delay;
   } else {
@@ -60,7 +65,7 @@ var startPlug = async function (plug, delayParam) {
   return plug;
 }
 
-var stopPlug = async function (plug) {
+var stopPlug = async function (plug, timeout) {
   logger.activite("Stop plug");
   var oldStatus = plug.status;
   //await wpi.write(plug.pin, OFF);
@@ -73,5 +78,9 @@ var stopPlug = async function (plug) {
     plug.changeTime = Date.now();
   }
 
+  if (timeout && timeoutCallback && typeof timeoutCallback === 'function') {
+    timeoutCallback(plug);
+  }
+  
   return plug;
 }
