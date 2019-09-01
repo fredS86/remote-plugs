@@ -17,24 +17,8 @@ router.get('/', function (req, res) {
   });
 });
 
-router.route('/:id')
-  .get(function (req, res) {
-    managePlug(req, res);
-  })
-  .post(function (req, res) {
-    managePlug(req, res, (parseInt(req.body.status) === 1 ? plugs.on : plugs.off));
-  });
-
-router.get('/:id/on', function (req, res) {
-  managePlug(req, res, plugs.on);
-});
-
-router.get('/:id/off', function (req, res) {
-  managePlug(req, res, plugs.off);
-});
-
 router.route('/activity')
-.all((req, res) => {
+.all(function (req, res) {
   if (req.headers.accept && req.headers.accept==="text/event-stream") {
     // let request last as long as possible
     //req.socket.setTimeout(Infinity);
@@ -65,6 +49,23 @@ router.route('/activity')
   }
 
 });
+
+router.route('/:id')
+  .get(function (req, res) {
+    managePlug(req, res);
+  })
+  .post(function (req, res) {
+    managePlug(req, res, (parseInt(req.body.status) === 1 ? plugs.on : plugs.off));
+  });
+
+router.get('/:id/on', function (req, res) {
+  managePlug(req, res, plugs.on);
+});
+
+router.get('/:id/off', function (req, res) {
+  managePlug(req, res, plugs.off);
+});
+
 
 var managePlug = async function(req, res, action) {
   var plug = await plugs.read(req.params.id);
@@ -105,6 +106,6 @@ var notifyAll = function(data) {
   let message = 'data: ' + JSON.stringify(data) + '\n\n' ;
   notify.forEach((res) => res.write(message));
 };
-plugs.timeoutCallback(function(data) {
-  notifyAll(makeResult(data));
+plugs.timeoutCallback(function(plug) {
+  notifyAll(makeResult(plug));
 })
