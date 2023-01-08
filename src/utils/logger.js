@@ -2,7 +2,7 @@
 
 var winston = require('winston');
 var fs = require('fs');
-var logDir = process.platform === "win32" ? './logs' : '/var/log/RemotePlugs';
+var logDir = process.env.LOG_DIR || (process.platform === "win32" ? './logs' : '/var/log/RemotePlugs');
 
 //
 // Logging levels
