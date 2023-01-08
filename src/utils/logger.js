@@ -1,7 +1,6 @@
 'use strict';
 
 var winston = require('winston');
-var moment = require('moment');
 var fs = require('fs');
 var logDir = process.platform === "win32" ? './logs' : '/var/log/RemotePlugs';
 
@@ -26,7 +25,18 @@ var config = {
 };
 
 var formatTimestamp = function () {
-   return moment().format('YYYY-MM-DD ddd hh:mm:ss:SSS');
+  // yyyy-MM-dd DD hh:mm:ss.SSS
+  let _ndigit = (i, n) => ('00' + String(i)).slice(n ? -n : -2)
+  let now = new Date();
+  return now.getFullYear() + '-' +
+      _ndigit(now.getMonth() + 1) + '-' +
+      _ndigit(now.getDate()) + ' ' +
+      ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'][now.getDay()] + ' ' +
+      _ndigit(now.getHours()) + ':' +
+      _ndigit(now.getMinutes()) + ':' +
+      _ndigit(now.getSeconds()) + '.' +
+      _ndigit(now.getMilliseconds(), 3)
+      ;
 }
 
 var logger = new (winston.Logger)({
@@ -38,7 +48,7 @@ var logger = new (winston.Logger)({
       timestamp: formatTimestamp,
       level: 'debug',
       handleExceptions: true,
-      humanReadableUnhandledException: true      
+      humanReadableUnhandledException: true
     }),
     new (winston.transports.File)({
       name: 'activite',
