@@ -1,19 +1,26 @@
 {
+	"comments": [
+		"`delay`s are in ms.",
+		"With a global `delay` every plug will be stopped automatically.",
+		"`type`is essentially for the frontend",
+		""
+	],
 	"delay": 15000,
 	"plugs": [
 		{
 			"id": "plugId",
 			"pin": 1,
 			"host": "ip|hostname",
-			"type" : "timer|button",
+			"type" : "timer|switch",
 			"label" : "Beautiful name",
 			"delay" : 20000,
+			"disabled" : true,
 			"comments": [
-				"`delays` are in ms.",
-				"`id` and `pin` are mandatory. If `type` == 'timer', `delay` is also mandatory.",
-				"Default `type` is 'button'.",
-				"Default `host` is 'localhost'.",
-				"A 'button' can be stopped after a `delay` but a 'timer' is always.",
+				"`id` and `pin` are mandatory. If `type` == 'timer', `delay` is also mandatory unless a global `delay`is present.",
+				"`type` defaults to 'switch'.",
+				"`host` defaults to 'localhost'.",
+				"`disabled` defaults to false",
+				"A 'switch' can be stopped after a `delay` but a 'timer' is always.",
 				""
 			]
 		}

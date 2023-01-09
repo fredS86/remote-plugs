@@ -8,8 +8,8 @@ const gpio = require('./gpio')
 
 logger.debug(conf.plugs);
 
-// Initialise toutes les prises.
-conf.plugs.forEach(gpio.init);
+// Initialise every active plug
+conf.plugs.filter(plug => !plug.disabled).forEach(gpio.init);
 
 exports.listPlugs = function() {
     return conf.plugs;
@@ -21,7 +21,7 @@ exports.getPlug = function(id) {
 
 exports.setPlug=function(plug) {
     removePlug(plug.id);
-    gpio.init(plug);
+    plug.disabled || gpio.init(plug);
     conf.plugs.push(plug);
     saveConf();
 }
