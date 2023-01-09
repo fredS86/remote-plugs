@@ -16,13 +16,13 @@ exports.read = function(id) {
     return plug ? majPlug(plug) : Promise.resolve(plug);
 }
 
-exports.on = function(plug, timeleft){
-  logger.debug(timeleft);
-  return switchPlug(startPlug, plug, timeleft);
+exports.on = function(plug, params){
+  logger.debug(JSON.stringify(params));
+  return switchPlug(startPlug, plug, params);
 }
 
 exports.off = function(plug){
-  return switchPlug(stopPlug, plug);
+  return switchPlug(stopPlug, plug, {});
 }
 
 var timeoutCallback;
@@ -30,9 +30,9 @@ exports.timeoutCallback = function(callback) {
   timeoutCallback = callback;
 }
 
-const switchPlug = function(action, plug, timeleft) {
+const switchPlug = function(action, plug, params) {
     // on realise l'action et on MAJ l'etat du plug
-    return action(plug, timeleft).then(majPlug);
+    return action(plug, params).then(majPlug);
 }
 
 const majPlug = async function (plug) {
@@ -40,31 +40,42 @@ const majPlug = async function (plug) {
     return plug;
 }
 
-const startPlug = async function (plug, delayParam) {
+const startPlug = async function (plug, {delayParam, action}) {
   logger.activite("Start plug");
-  var oldStatus = plug.status;
 
+  // on met a jour le timer dans tous les cas
   if (  typeof plug.timer !== 'undefined' ) {
     clearTimeout(plug.timer);
   }
-  var delay = delayParam || plug.conf.delay || (plug.conf.type === 'timer' && conf.getDefaultDelay());
+  const delay = delayParam || action.delay || plug.conf.delay || (plug.conf.type === 'timer' && conf.getDefaultDelay());
   if ( delay > 0 ) {
-    plug.timer = setTimeout(stopPlug, delay, plug, true);
+    plug.timer = setTimeout(stopPlug, delay, plug, {timeout: true});
     logger.activite("Delay :", delay);
     plug.stopTime = Date.now() + delay;
   } else {
     plug.stopTime = -1;
   }
-  await plug.on();
-  plug.status = ON;
-  if (oldStatus !== ON) {
+
+  // on ne met a jour le gpio que s'il a d'un cgt de status
+  const newStatus = action.status || ON;
+  if (plug.status !== newStatus) {
+    if (plug.status !== OFF) {
+      await plug.off();
+    }
+    await Promise.all(
+        (action.pins || [action.pin]).map(actionPin => {
+          const pinIdx = (plug.conf.pins || [plug.conf.pin]).findIndex(confPin => actionPin === confPin);
+          return plug.pins[pinIdx].on();
+        })
+    );
+    plug.status = newStatus;
     plug.changeTime = Date.now();
   }
 
   return plug;
 }
 
-const stopPlug = async function (plug, timeout) {
+const stopPlug = async function (plug, {timeout}) {
   logger.activite("Stop plug");
   var oldStatus = plug.status;
   await plug.off();

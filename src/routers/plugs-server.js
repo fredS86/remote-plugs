@@ -11,7 +11,7 @@ router.use(bodyParser.json());
 router.get('/', function (req, res) {
   plugs.all().then((all) => {
     // construction du resultat
-    var result = all.map(makeResult);
+    const result = all.map(makeResult);
     logger.info('GET / return list of ', result.length, ' plugs');
     res.send(result);
   });
@@ -41,7 +41,7 @@ router.route('/activity')
     // is properly shut down to prevent memory leaks...and incorrect subscriber
     // counts to the channel.
     req.on("close", function() {
-      let idx = notify.findIndex((val) => val === res);
+      const idx = notify.findIndex((val) => val === res);
       notify.splice(idx, 1);
     });
   } else {
@@ -55,33 +55,64 @@ router.route('/:id')
     managePlug(req, res);
   })
   .post(function (req, res) {
-    managePlug(req, res, (parseInt(req.body.status) === 1 ? plugs.on : plugs.off));
+    managePlug(req, res);
   });
 
-router.get('/:id/on', function (req, res) {
-  managePlug(req, res, plugs.on);
-});
-
-router.get('/:id/off', function (req, res) {
-  managePlug(req, res, plugs.off);
+// action is one of 'on', 'off' or any action id defined for the plug
+router.get('/:id/:action', function (req, res) {
+  managePlug(req, res);
 });
 
 
-var managePlug = async function(req, res, action) {
-  var plug = await plugs.read(req.params.id);
+const managePlug = async function(req, res) {
+
+  const plug = await plugs.read(req.params.id);
   if (plug) {
-    var transform = action || function(plug) {return Promise.resolve(plug)};
-    var result = makeResult(await transform(plug, parseInt(req.query.timeLeft || req.body.timeLeft)));
-    notifyAll(result);
-    res.send(result);
+    const actionId = req.params.action || req.body.action;
+    if (actionId) {
+      if (actionId === 'off') {
+        sendResult(req, res, await plugs.off(plug));
+      } else {
+        const defaultAction = {
+          id: 'on',
+          status: 1,
+          pin: plug.conf.pin,
+          pins: plug.conf.pins
+        }
+        const action = (plug.conf.actions || [defaultAction]).find(action => actionId === action.id || parseInt(req.body.status) === action.status);
+        if (action) {
+          sendResult(req, res, await plugs.on(plug, {
+            action,
+            delayParam: parseInt(req.query.timeLeft || req.body.timeLeft)
+          }));
+        } else {
+          send404(req, res);
+        }
+      }
+    } else {
+      sendResult(req, res, plug, true);
+    }
   } else {
-    res.sendStatus(404);
+    send404(req, res);
   }
+}
+
+const sendResult = function(req, res, rawResult, ignoreNotify) {
+  const result = makeResult(rawResult);
+  if (!ignoreNotify) {
+    notifyAll(result);
+  }
+  res.send(result);
   logResult(req, res, result);
 };
 
-var makeResult = function(plug) {
-  var result = {};
+const send404 = function(req, res) {
+  res.sendStatus(404);
+  logResult(req, res);
+}
+
+const makeResult = function(plug) {
+  const result = {};
   result.id = plug.conf.id;
   result.status = plug.status;
   result.type = plug.conf.type;
@@ -93,7 +124,7 @@ var makeResult = function(plug) {
   return result;
 };
 
-var logResult = function(req, res, result) {
+const logResult = function(req, res, result) {
   if (result) {
     logger.info(req.method + ' ' + req.path + ' returning ' + JSON.stringify(result));
   } else {
@@ -101,11 +132,11 @@ var logResult = function(req, res, result) {
   }
 };
 
-var notify  = [];
-var notifyAll = function(data) {
-  let message = 'data: ' + JSON.stringify(data) + '\n\n' ;
+const notify  = [];
+const notifyAll = function(data) {
+  const message = 'data: ' + JSON.stringify(data) + '\n\n' ;
   notify.forEach((res) => res.write(message));
 };
 plugs.timeoutCallback(function(plug) {
   notifyAll(makeResult(plug));
-})
+});

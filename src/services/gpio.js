@@ -33,19 +33,28 @@ const initHost = (host) => {
 exports.init = async (conf) => {
     if (!gpios.has(conf.id)) {
         const hostGpio = await initHost(conf.host || 'localhost');
-        const gpio = hostGpio.gpio(conf.pin);
-        let pin = {
+        const pins = (conf.pins || [conf.pin]).map((p, i) => {
+            const pin = hostGpio.gpio(p);
+            const offState = (conf.offStates && conf.offStates[i]) || conf.offState;
+            return {
+                on: () => promisify(pin.write,offState ? 0 : 1),
+                off: () => promisify(pin.write,offState ? 1 : 0),
+                in: () => promisify(pin.modeSet,'input'),
+                out: () => promisify(pin.modeSet,'output'),
+            };
+        });
+        gpios.set(conf.id, {
             conf,
             status: 0,
             changeTime: new Date(),
-            on: () => promisify(gpio.write,conf.offState ? 0 : 1),
-            off: () => promisify(gpio.write,conf.offState ? 1 : 0),
-            in: () => promisify(gpio.modeSet,'input'),
-            out: () => promisify(gpio.modeSet,'output'),
-        };
-        gpios.set(conf.id, pin);
-        await pin.off();
-        await pin.out();
+            pins,
+            disconnect: () => Promise.all([...pins].reverse().map(pin => Promise.all([pin.off(), pin.in()]))),
+            off: () => Promise.all([...pins].reverse().map(pin => pin.off()))
+    });
+        await Promise.all(pins.map(async pin => {
+            await pin.off();
+            await pin.out();
+        }));
     }
     return gpios.get(conf.id);
 }
@@ -59,7 +68,7 @@ const getOrDefault = (map, key, defaultValueProvider) => {
 
 const disconnect = exports.disconnect = async ({id}) => {
     if (gpios.has(id)) {
-        await gpios.get(id).in();
+        await gpios.get(id).disconnect();
         gpios.delete(id);
     }
 }

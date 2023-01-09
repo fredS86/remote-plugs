@@ -26,6 +26,40 @@
 				"offState can be falsy or truthy. A falsy value indicate that the pin need a drive high to activate.",
 				""
 			]
+		},
+		{
+			"id": "motorId",
+			"pins": [2, 3],
+			"offStates" : [0, 1],
+			"host": "ip|hostname",
+			"actions": [
+				{
+					"id": "up",
+					"pin": 2,
+					"status": 1
+				},
+				{
+					"id": "down",
+					"pin": 3,
+					"status": 2
+				},
+				{
+					"id": "pairing",
+					"pins": [2,3],
+					"status": 3,
+					"delay": 1000
+				}
+			],
+			"type" : "motor|bounded-motor",
+			"label" : "Beautiful name",
+			"delay" : 30000,
+			"comments": [
+				"It is possible ti define multiple pins for a plug with the `pins` attribute (an array) wich replace the `pin` one",
+				"When you have multiple pins, you can define multiple ``offState` by using `offStates`. It work with index matching.",
+				"With multiple pins, the 'on' action turn on pins on the order of the array and the 'off' action turn off pins on reverse order",
+				"`actions` allow you to define personalised actions instead of the default 'on' action. 'off' action is always defined and associated qith `status`0. Like `on` action it manages all pins.",
+				""
+			]
 		}
 	]
 }
