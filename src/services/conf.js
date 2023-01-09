@@ -1,10 +1,10 @@
-var CONF_FILE = '../conf/server.json';
+const logger = require('../utils/logger');
+const fs = require('fs');
+const confFile = fs.realpathSync(process.env.CONF_FILE || __dirname + '/../conf/server.json');
+logger.debug('Using conf : ' + confFile);
+const conf = require(confFile);
 
-var logger = require('../utils/logger');
 var wpi = require('wpi-gpio');
-var fs = require('fs');
-var conf = require(CONF_FILE);
-var confFile = __dirname + '/' + CONF_FILE;
 
 var initPlug = exports.init = async function(plug){
   //await wpi.output(plug.pin, 0);

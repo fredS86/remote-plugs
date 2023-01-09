@@ -1,0 +1,18 @@
+{
+	"delay": 15000,
+	"plugs": [
+		{
+			"id": "plugId",
+			"pin": 1,
+			"type" : "timer|button",
+			"label" : "Beautiful name",
+			"delay" : 20000,
+			"comments": [
+				"`delays` are in ms.",
+				"`id` and `pin` are mandatory. If `type` == 'timer', `delay` is also mandatory.",
+				"Default `type` is 'button'.",
+				"A 'button' can be stopped after a `delay` but a 'timer' is always."
+			]
+		}
+	]
+}
