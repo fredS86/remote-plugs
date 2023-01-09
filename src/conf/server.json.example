@@ -1,7 +1,7 @@
 {
 	"comments": [
 		"`delay`s are in ms.",
-		"With a global `delay` every plug will be stopped automatically.",
+		"Global `delay` is a just a default value for timers.",
 		"`type`is essentially for the frontend",
 		""
 	],
