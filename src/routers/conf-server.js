@@ -9,7 +9,7 @@ module.exports = router;
 router.use(bodyParser.json());
 
 router.get('/', function (req, res) {
-  var config = {delay : conf.getDefaultDelay(), plugs : conf.plugs()};
+  var config = {delay : conf.getDefaultDelay(), plugs : conf.listPlugs()};
   logger.info('GET / return conf ', config);
   res.send(config);
 });
@@ -24,7 +24,7 @@ router.route('/delay')
   });
 
 router.get('/plugs', function (req, res) {
-  res.send(conf.plugs());
+  res.send(conf.listPlugs());
 });
 
 router.route('/plugs/:id')
@@ -34,9 +34,9 @@ router.route('/plugs/:id')
   .put(function (req, res) {
     var plug = req.body;
     plug.id = req.params.id;
-    res.send(conf.setPlug(plug));
+    conf.setPlug(plug);
+    res.ok();
   })
   .delete(function(req, res) {
     res.send(conf.removePlug(req.params.id));
   });
-    

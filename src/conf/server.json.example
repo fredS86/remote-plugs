@@ -4,6 +4,7 @@
 		{
 			"id": "plugId",
 			"pin": 1,
+			"host": "ip|hostname",
 			"type" : "timer|button",
 			"label" : "Beautiful name",
 			"delay" : 20000,
@@ -11,7 +12,9 @@
 				"`delays` are in ms.",
 				"`id` and `pin` are mandatory. If `type` == 'timer', `delay` is also mandatory.",
 				"Default `type` is 'button'.",
-				"A 'button' can be stopped after a `delay` but a 'timer' is always."
+				"Default `host` is 'localhost'.",
+				"A 'button' can be stopped after a `delay` but a 'timer' is always.",
+				""
 			]
 		}
 	]

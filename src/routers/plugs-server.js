@@ -22,7 +22,7 @@ router.route('/activity')
   if (req.headers.accept && req.headers.accept==="text/event-stream") {
     // let request last as long as possible
     //req.socket.setTimeout(Infinity);
-    
+
     // register the response to notify
     notify.push(res);
 
@@ -35,7 +35,7 @@ router.route('/activity')
     });
 
     res.write('\n');
-    
+
     // The 'close' event is fired when a user closes their browser window.
     // In that situation we want to make sure our redis channel subscription
     // is properly shut down to prevent memory leaks...and incorrect subscriber
@@ -82,17 +82,17 @@ var managePlug = async function(req, res, action) {
 
 var makeResult = function(plug) {
   var result = {};
-  result.id = plug.id;
+  result.id = plug.conf.id;
   result.status = plug.status;
-  result.type = plug.type;
-  result.label = plug.label;
+  result.type = plug.conf.type;
+  result.label = plug.conf.label;
   result.elapsedTime = Date.now() - plug.changeTime;
   if ( plug.status && plug.stopTime !== -1) {
     result.timeLeft = plug.stopTime - Date.now();
   }
   return result;
 };
-  
+
 var logResult = function(req, res, result) {
   if (result) {
     logger.info(req.method + ' ' + req.path + ' returning ' + JSON.stringify(result));

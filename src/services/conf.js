@@ -4,65 +4,50 @@ const confFile = fs.realpathSync(process.env.CONF_FILE || __dirname + '/../conf/
 logger.debug('Using conf : ' + confFile);
 const conf = require(confFile);
 
-var wpi = require('wpi-gpio');
+const gpio = require('./gpio')
 
-var initPlug = exports.init = async function(plug){
-  //await wpi.output(plug.pin, 0);
-  await wpi.input(plug.pin);
-  await wpi.write(plug.pin, 0);
-  plug.status = 0;
-  plug.changeTime = Date.now();
-};
-
-
-var plugs = conf.plugs;
-logger.debug(plugs);
+logger.debug(conf.plugs);
 
 // Initialise toutes les prises.
-plugs.forEach(initPlug);
+conf.plugs.forEach(gpio.init);
 
-exports.plugs = function() {
-  return plugs;
+exports.listPlugs = function() {
+    return conf.plugs;
 }
 
 exports.getPlug = function(id) {
-    return plugs.find(function(p) {
-      return p.id === id;
-    })
+    return conf.plugs.find(p => p.id === id);
 }
 
 exports.setPlug=function(plug) {
-    //remove plug.id from collection et si il n'y etait pas l'initialiser
-    if (!removePlug(plug.id)) {
-      initPlug(plug)
-    }
-    plugs.push(plug);
+    removePlug(plug.id);
+    gpio.init(plug);
+    conf.plugs.push(plug);
     saveConf();
 }
 
 exports.removePlug = function (id) {
-  removePlugs(id);
-  saveconf();
+    let removed = removePlug(id);
+    saveConf();
+    return removed;
+}
+
+const removePlug = function (id) {
+    const oldPlugs = conf.plugs;
+    conf.plugs.find((plug) =>  id === plug.id).forEach(gpio.disconnect)
+    conf.plugs = conf.plugs.filter((plug) =>  id !== plug.id);
+    return oldPlugs.length !== conf.plugs.length;
 }
 
 exports.getDefaultDelay = function() {
-  return conf.delay;
+    return conf.delay;
 }
 
 exports.setDefaultDelay = function(delay) {
-  conf.delay = delay;
-  saveConf();
+    conf.delay = delay;
+    saveConf();
 }
 
-var removePlug = function (id) {
-  var oldPlugs = plugs;
-  conf.plugs = plugs = plugs.filter(function(plug) {
-    //TODO eteindre le plug
-    return id !== plug.id;
-  });
-  return oldPlugs.length !== plugs.length;
-}
-
-var saveConf = function() {
-  fs.writeFileSync(confFile, JSON.stringify(conf));
+const saveConf = function() {
+    fs.writeFileSync(confFile, JSON.stringify(conf));
 }
