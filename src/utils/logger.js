@@ -1,13 +1,13 @@
 'use strict';
 
-var winston = require('winston');
-var fs = require('fs');
-var logDir = process.env.LOG_DIR || (process.platform === "win32" ? './logs' : '/var/log/RemotePlugs');
+const winston = require('winston');
+const fs = require('fs');
+const logDir = process.env.LOG_DIR || (process.platform === "win32" ? './logs' : '/var/log/RemotePlugs');
 
 //
 // Logging levels
 //
-var config = {
+const config = {
   levels: {
     activite: 0,
     error: 1,
@@ -24,7 +24,7 @@ var config = {
   }
 };
 
-var formatTimestamp = function () {
+const formatTimestamp = function () {
   // yyyy-MM-dd DD hh:mm:ss.SSS
   let _ndigit = (i, n) => ('00' + String(i)).slice(n ? -n : -2)
   let now = new Date();
@@ -39,7 +39,7 @@ var formatTimestamp = function () {
       ;
 }
 
-var logger = new (winston.Logger)({
+const logger = new (winston.Logger)({
   levels: config.levels,
   colors: config.colors,
   transports: [

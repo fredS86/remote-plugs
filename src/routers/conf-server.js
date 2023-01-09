@@ -1,8 +1,8 @@
-var logger = require('../utils/logger');
-var express = require('express');
-var router = express.Router();
-var conf = require('../services/conf')
-var bodyParser = require('body-parser');
+const logger = require('../utils/logger');
+const express = require('express');
+const router = express.Router();
+const conf = require('../services/conf')
+const bodyParser = require('body-parser');
 
 module.exports = router;
 
