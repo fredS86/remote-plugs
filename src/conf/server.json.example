@@ -10,6 +10,7 @@
 		{
 			"id": "plugId",
 			"pin": 1,
+			"offState": 0,
 			"host": "ip|hostname",
 			"type" : "timer|switch",
 			"label" : "Beautiful name",
@@ -20,7 +21,9 @@
 				"`type` defaults to 'switch'.",
 				"`host` defaults to 'localhost'.",
 				"`disabled` defaults to false",
+				"`offState` defaults to a falsy value",
 				"A 'switch' can be stopped after a `delay` but a 'timer' is always.",
+				"offState can be falsy or truthy. A falsy value indicate that the pin need a drive high to activate.",
 				""
 			]
 		}

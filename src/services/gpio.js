@@ -1,10 +1,6 @@
 const logger = require('../utils/logger');
 const pigpioClient = require('pigpio-client')
 
-const ACTIF = 0;
-const INACTIF = 1;
-
-
 const promisify = (fn, arg) => {
     return new Promise((resolve, reject) => {
         fn(arg, (err, res) => err ? reject(err) : resolve(res));
@@ -19,17 +15,7 @@ const initHost = (host) => {
         const pigpio = pigpioClient.pigpio({host});
         pigpio.once('connected', (infos) => {
             logger.debug('Connecte au gpio ' + JSON.stringify(infos))
-            resolve({
-                ...pigpio,
-                gpio: (gpio_pin) => {
-                    let gpio = pigpio.gpio(gpio_pin);
-                    return {
-                        ...gpio,
-                        modeSet: (mode) => promisify(gpio.modeSet, mode),
-                        write: (level) => promisify(gpio.write, level),
-                    }
-                }
-            });
+            resolve(pigpio);
         });
         pigpio.once('disconnected', () => {
             logger.debug('Deconnexion de ' + host)
@@ -48,16 +34,18 @@ exports.init = async (conf) => {
     if (!gpios.has(conf.id)) {
         const hostGpio = await initHost(conf.host || 'localhost');
         const gpio = hostGpio.gpio(conf.pin);
-        await gpio.modeSet('output');
-        //await gpio.modeSet('input'); // like INACTIF
-        await gpio.write(INACTIF);
-        gpios.set(conf.id, {
+        let pin = {
             conf,
             status: 0,
             changeTime: new Date(),
-            on: () => gpio.write(ACTIF),
-            off: () => gpio.write(INACTIF),
-        });
+            on: () => promisify(gpio.write,conf.offState ? 0 : 1),
+            off: () => promisify(gpio.write,conf.offState ? 1 : 0),
+            in: () => promisify(gpio.modeSet,'input'),
+            out: () => promisify(gpio.modeSet,'output'),
+        };
+        gpios.set(conf.id, pin);
+        await pin.off();
+        await pin.out();
     }
     return gpios.get(conf.id);
 }
@@ -71,7 +59,7 @@ const getOrDefault = (map, key, defaultValueProvider) => {
 
 const disconnect = exports.disconnect = async ({id}) => {
     if (gpios.has(id)) {
-        await gpios.get(id).modeSet('input');
+        await gpios.get(id).in();
         gpios.delete(id);
     }
 }
