@@ -61,5 +61,13 @@
 				""
 			]
 		}
+	],
+	"webcams": [
+		{
+			"id": "ext-cam",
+			"mode": "mjpeg|htsp",
+			"url": "http://myhome.com/cam.cgi?snapshot",
+			"label": "Exterior camera"
+		}
 	]
 }

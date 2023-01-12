@@ -1,10 +1,11 @@
-var logger = require('./utils/logger');
-var express = require('express');
+const logger = require('./utils/logger');
+const express = require('express');
 const router = express.Router;
-var serveStatic = require('serve-static');
-var plugs = require('./routers/plugs-server');
-var conf = require('./routers/conf-server');
-var app = express();
+const serveStatic = require('serve-static');
+const plugs = require('./routers/plugs-server');
+const webcams = require('./routers/webcams-server');
+const conf = require('./routers/conf-server');
+const app = express();
 
 
 // use command-line arg for port if passed
@@ -15,6 +16,7 @@ logger.debug(__dirname + '/public')
 
 let apiRouter = router()
     .use('/plugs', plugs)
+    .use('/webcams', webcams)
     .use('/conf', conf);
 app.use('/api', apiRouter);
 
