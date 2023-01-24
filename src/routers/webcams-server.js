@@ -2,11 +2,8 @@ const express = require('express');
 const router = express.Router();
 const conf = require('../services/conf');
 const bodyParser = require('body-parser');
-const Jimp = require("jimp");
 const logger = require("../utils/logger");
 const http = require("http");
-const {decode} = require("imagescript");
-const {Image} = require('image-js');
 const Sharp = require('sharp');
 
 module.exports = router;
@@ -89,8 +86,7 @@ function read(req, res, next) {
 
 function transform(req, res) {
     let webcam = res.locals.webcam;
-    const method = webcam.method === 'jimp' ? jimp : webcam.method === 'imagejs' ? image_js : webcam.method === 'imagescript' ? imagescript : sharp;
-    method(webcam.image, webcam.options)
+    sharp(webcam.image, webcam.options)
         .then(buffer => {
             webcam.image = buffer;
             res.header('Content-Type', 'image/jpeg')
@@ -102,45 +98,6 @@ function transform(req, res) {
             res.sendStatus(500, err);
         });
 }
-
-function jimp(jpeg, options) {
-    return Jimp.read(jpeg)
-        .then(image => {
-            return image
-                // .greyscale()
-                // .rotate(270)
-                // .crop(200,120,320,240)
-                .quality(options.quality)
-                // .resize(640,480)
-                .getBufferAsync(Jimp.MIME_JPEG)
-        })
-}
-
-function imagescript(jpeg, options) {
-    return decode(jpeg)
-        .then(image => {
-            return image
-                // .rotate(180)
-                // .crop(200,120,320,240)
-                // .resize(640,480)
-                .encodeJPEG(options.quality)
-        })
-        .then(uint8 => Buffer.from(uint8.buffer))
-}
-
-function image_js(jpeg, options) {
-    return Image.load(jpeg)
-        .then(image => {
-            return image
-                // .grey()
-                // .rotate({angle: 90})
-                // .crop({x:200, y:120, width:320, height:240})
-                // .resize({witdh:640, height:480})
-                .toBuffer({format: options.format, encoder: {quality: options.quality}})
-        })
-
-}
-
 function sharp(image, options) {
     let sharp = Sharp(image);
     sharp

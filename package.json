@@ -13,9 +13,6 @@
   "dependencies": {
     "body-parser": "^1.20.1",
     "express": "^4.18.2",
-    "image-js": "^0.35.2",
-    "imagescript": "^1.2.15",
-    "jimp": "^0.16.2",
     "pigpio-client": "1.5.2",
     "serve-static": "^1.14.1",
     "sharp": "^0.23.4",
