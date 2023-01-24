@@ -86,8 +86,12 @@
 				},
 				"verticalFlip": false,
 				"horizontalFlip": true,
-				"brightness": 50,
-				"contrast": 50
+				"brightness": 1.5,
+				"contrast": 1.8,
+				"blur": 1.1,
+				"sharpen": 0.9,
+				"notimestamp": false,
+				"timestampColor": "gray|#000000"
 			}
 		}
 	]

@@ -39,7 +39,9 @@ function getConf(req, res, next) {
             blur: Number(req.query.blur) || undefined,
             sharpen: Number(req.query.sharpen) || undefined,
             brightness: Number(req.query.brightness || req.query.b) || 1,
-            contrast: Number(req.query.contrast || req.query.c) || 1
+            contrast: Number(req.query.contrast || req.query.c) || 1,
+            notimestamp: (req.query.notimestamp || req.query.nt) === 'true' || false,
+            timestampColor: String(req.query.timestampColor || req.query.tc || 'gray'),
         }
         if (req.query.width || req.query.w || req.query.height || req.query.h) {
             queryOptions.resize= {
@@ -102,23 +104,70 @@ function transform(req, res) {
             res.sendStatus(500, err);
         });
 }
-function sharp(image, options) {
+async function sharp(image, options) {
     let sharp = Sharp(image);
     sharp
         .greyscale(options.grayscale)
         .rotate(options.rotate);
-    if (options.crop)
-        sharp.extract(options.crop)
-        .resize(options.resize)
+    if (options.crop) {
+        sharp.extract(options.crop);
+    }
+    sharp.resize(options.resize)
         .flip(options.verticalFlip)
         .flop(options.horizontalFlip)
         .linear(options.brightness * options.contrast, options.brightness * (-(128 * options.contrast) + 128))
         .modulate({brightness: options.brightness});
-    if (options.blur)
-        sharp.blur(options.blur)
-    if (options.sharpen)
-        sharp.sharpen()
-    return sharp
+    if (options.blur) {
+        sharp.blur(options.blur);
+    }
+    if (options.sharpen) {
+        sharp.sharpen();
+    }
+
+    const beforeCLock = await sharp
+        .toFormat(options.format, {quality: options.quality})
+        .toBuffer();
+
+    return options.notimestamp ? beforeCLock : timestamp(beforeCLock, options);
+}
+
+async function timestamp(image, options) {
+    let metadata = await Sharp(image).metadata();
+
+    const height = Math.max(12, Math.round(metadata.height * 5 / 100));
+    const width = Math.min(metadata.width, height * 10);
+    const top = Math.max(0, Math.round(metadata.height * 99 / 100) - height);
+    const left = Math.max(0, Math.round(metadata.width * 99 / 100) - width);
+
+    return Sharp(image)
+        .composite([{
+            input: {
+                text: {
+                    text: '<span foreground="' + options.timestampColor + '">' + formatTimestamp() + '</span>',
+                    font: 'arial',
+                    height,
+                    width,
+                    rgba: true
+                }
+            },
+            top,
+            left
+        }])
         .toFormat(options.format, {quality: options.quality})
         .toBuffer();
 }
+
+
+function formatTimestamp () {
+    // yyyy-MM-dd hh:mm:ss
+    let _ndigit = (i, n) => ('00' + String(i)).slice(n ? -n : -2)
+    let now = new Date();
+    return now.getFullYear() + '-' +
+        _ndigit(now.getMonth() + 1) + '-' +
+        _ndigit(now.getDate()) + ' ' +
+        _ndigit(now.getHours()) + ':' +
+        _ndigit(now.getMinutes()) + ':' +
+        _ndigit(now.getSeconds())
+        ;
+}
+
