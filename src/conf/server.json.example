@@ -67,7 +67,26 @@
 			"id": "ext-cam",
 			"mode": "mjpeg|htsp",
 			"url": "http://myhome.com/cam.cgi?snapshot",
-			"label": "Exterior camera"
+			"label": "Exterior camera",
+			"options": {
+				"grayscale": false,
+				"rotate": 180,
+				"crop": {
+					"left":200,
+					"top":120,
+					"width":320,
+					"height":240
+				},
+				"resize": {
+					"width": 640,
+					"height": 480,
+					"fit": "cover|contain|fill|inside|outside",
+					"position": "centre|left|right top|...|north|southwest|....if fit is cover or contain (see https://sharp.pixelplumbing.com/api-resize#resize)",
+					"background": "#FFFFFF|rgb(255 255 255)|... if fit is contain (see https://www.npmjs.com/package/color-string)"
+				},
+				"verticalFlip": false,
+				"horizontalFlip": true
+			}
 		}
 	]
 }
