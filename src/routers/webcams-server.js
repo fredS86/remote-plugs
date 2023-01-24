@@ -36,14 +36,18 @@ function getConf(req, res, next) {
             rotate: Number(req.query.rotate || req.query.r) || 0,
             verticalFlip: (req.query.verticalFlip || req.query.vf) === 'true' || false,
             horizontalFlip: (req.query.horizontalFlip || req.query.hf) === 'true' || false,
+            blur: Number(req.query.blur) || undefined,
+            sharpen: Number(req.query.sharpen) || undefined,
+            brightness: Number(req.query.brightness || req.query.b) || 1,
+            contrast: Number(req.query.contrast || req.query.c) || 1
         }
         if (req.query.width || req.query.w || req.query.height || req.query.h) {
             queryOptions.resize= {
                 width: Number(req.query.width || req.query.w) || undefined,
                 height: Number(req.query.height || req.query.h) || undefined,
-                background : String(req.query.background || req.query.b || "#FFFFFF"),
+                background : String(req.query.background || "#FFFFFF"),
                 fit : String(req.query.fit || "contain"),
-                position : String(req.query.position || req.query.p || "center")
+                position : String(req.query.position || "center")
             }
         }
         if (req.query.crop_width || req.query.cw ||
@@ -105,10 +109,16 @@ function sharp(image, options) {
         .rotate(options.rotate);
     if (options.crop)
         sharp.extract(options.crop)
-    return sharp
         .resize(options.resize)
         .flip(options.verticalFlip)
         .flop(options.horizontalFlip)
+        .linear(options.brightness * options.contrast, options.brightness * (-(128 * options.contrast) + 128))
+        .modulate({brightness: options.brightness});
+    if (options.blur)
+        sharp.blur(options.blur)
+    if (options.sharpen)
+        sharp.sharpen()
+    return sharp
         .toFormat(options.format, {quality: options.quality})
         .toBuffer();
 }
