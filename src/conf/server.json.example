@@ -85,7 +85,9 @@
 					"background": "#FFFFFF|rgb(255 255 255)|... if fit is contain (see https://www.npmjs.com/package/color-string)"
 				},
 				"verticalFlip": false,
-				"horizontalFlip": true
+				"horizontalFlip": true,
+				"brightness": 50,
+				"contrast": 50
 			}
 		}
 	]
